@@ -342,30 +342,6 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   overflow: hidden auto;
 }
 
-.mobile-nav::before {
-  content: '';
-  position: absolute;
-  top: -70px;
-  right: -90px;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--color-melon-light) 0%, rgba(251, 210, 187, 0) 72%);
-  pointer-events: none;
-}
-
-.mobile-nav::after {
-  content: '';
-  position: absolute;
-  bottom: -90px;
-  left: -80px;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--color-beige) 0%, rgba(234, 223, 213, 0) 70%);
-  pointer-events: none;
-}
-
 .mobile-nav.is-open {
   opacity: 1;
   transform: translateY(0);
@@ -507,7 +483,7 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   position: relative;
   z-index: 1;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
   background: var(--color-beige);
   display: flex;
   align-items: center;
@@ -731,22 +707,31 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   margin: 0 auto;
 }
 
+/* Barra de controles debajo de las tarjetas: flechas + puntos, nunca
+   sobre el contenido de la tarjeta. */
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+
 .carousel__arrow {
-  display: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;
+  transform: none;
+  flex-shrink: 0;
   width: 42px;
   height: 42px;
   border-radius: 50%;
   background: var(--color-white);
   box-shadow: var(--shadow-card);
   border: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--color-taupe);
-  z-index: 5;
   transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
@@ -754,15 +739,12 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
 .carousel__arrow[disabled] { opacity: 0.35; cursor: default; }
 .carousel__arrow[disabled]:hover { background: var(--color-white); color: var(--color-taupe); }
 .carousel__arrow svg { width: 18px; height: 18px; }
-.carousel__arrow--prev { left: -6px; }
-.carousel__arrow--next { right: -6px; }
 
 .carousel__dots {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
 }
 
 .carousel__dot {
@@ -792,8 +774,7 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
     padding: 0;
   }
   .carousel--grid-desktop .carousel__slide { width: auto; }
-  .carousel--grid-desktop .carousel__arrow,
-  .carousel--grid-desktop .carousel__dots { display: none; }
+  .carousel--grid-desktop .carousel__controls { display: none; }
 }
 
 /* ============ PROCESO / PASOS ============ */
@@ -1129,19 +1110,6 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   margin: 0;
 }
 
-/* ============ RECURSOS / BLOG TEASER ============ */
-
-.resources-teaser {
-  background: var(--color-blue);
-  color: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 40px 30px;
-  text-align: center;
-}
-
-.resources-teaser h2 { color: var(--color-white); }
-.resources-teaser p { color: rgba(255,255,255,0.9); }
-
 /* ============ CTA FINAL ============ */
 
 .final-cta {
@@ -1412,7 +1380,6 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   .hero__actions .btn { width: auto; }
   .final-cta__actions { flex-direction: row; max-width: none; justify-content: center; }
   .final-cta__actions .btn { width: auto; }
-  .carousel__arrow { display: flex; }
   .social-grid { grid-template-columns: repeat(4, 1fr); max-width: none; }
 }
 

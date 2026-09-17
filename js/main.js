@@ -88,6 +88,8 @@
     var dots = [];
 
     if (slides.length <= 1) {
+      var controls = root.querySelector('.carousel__controls');
+      if (controls) controls.style.display = 'none';
       if (prevBtn) prevBtn.style.display = 'none';
       if (nextBtn) nextBtn.style.display = 'none';
       if (dotsContainer && !usesExternal) dotsContainer.style.display = 'none';

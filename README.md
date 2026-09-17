@@ -40,5 +40,5 @@ Las ilustraciones que aún quedan (`foto-sobre-mi.svg`, `favicon.svg`) son gráf
 ## Próximos pasos sugeridos
 
 - Conectar Google Analytics / Search Console (agregar el snippet correspondiente antes de `</head>` en `index.html`).
-- Agregar la sección de **Blog / Recursos** cuando haya contenido: ya existe un teaser en la home (`Recursos psicológicos`) listo para ampliarse con artículos reales.
+- Agregar una sección de **Blog / Recursos** más adelante, cuando haya contenido real que publicar (por ahora no está en la home).
 - Revisar ortografía, precios, datos de contacto y funcionamiento de los botones de WhatsApp en celular antes de publicar (checklist del brief original).
