@@ -13,16 +13,15 @@ assets/img/           Logo, favicon e ilustraciones
 robots.txt, sitemap.xml   SEO técnico
 ```
 
-## Pendiente antes de publicar (material que Rosa enviará)
+## Estado del material gráfico
 
-1. **Logo real**: reemplazar `assets/img/logo.svg` por el logo definitivo (ideal en SVG o PNG con fondo transparente). Se usa en el header (44px) y en el footer.
-2. **Foto de portada (hero)**: reemplazar `assets/img/foto-hero.svg` en el `<img>` de la sección `#inicio` por la fotografía profesional (retrato, mirando a cámara, fondo claro). Recomendado: JPG/WebP de al menos 800x1000px.
-3. **Foto de "Sobre mí"**: reemplazar `assets/img/foto-sobre-mi.svg` por la segunda fotografía (plano medio, más natural).
-4. **Foto de contacto/cierre (opcional)**: si se desea una tercera fotografía, puede añadirse en la sección de CTA final.
-5. **Imagen para redes sociales (Open Graph)**: reemplazar `assets/img/og-cover.svg` por una imagen JPG/PNG de 1200x630px (idealmente con foto real + logo), ya que algunas apps (WhatsApp, Facebook) no siempre renderizan bien SVG en las vistas previas de enlaces. Actualizar las referencias `og:image` y `twitter:image` en `index.html` con la nueva extensión.
-6. Mientras no se agreguen las fotos reales, el sitio usa **ilustraciones minimalistas propias** (formas orgánicas, sin cerebros ni elementos clínicos) como reemplazo temporal, siguiendo la línea gráfica solicitada en el brief.
+- ✅ **Logo real** (`assets/img/logo.jpeg`): ya integrado en el header y el footer.
+- ✅ **Foto de portada / hero** (`assets/img/foto-hero.jpeg`): ya integrada en la sección `#inicio`, y también se usa como imagen de vista previa para redes sociales (Open Graph / Twitter Card).
+- ⏳ **Foto de "Sobre mí"**: pendiente. Actualmente se sigue usando una ilustración minimalista propia (`assets/img/foto-sobre-mi.svg`) como reemplazo temporal. Cuando envíes la segunda fotografía (plano medio, más natural), reemplaza el archivo y actualiza la referencia en `index.html` (sección "Sobre mí").
+- ⏳ **Foto de contacto/cierre (opcional)**: si se desea una tercera fotografía, puede añadirse en la sección de CTA final.
+- **Imagen de Open Graph**: por ahora se usa `foto-hero.jpeg` directamente (funciona bien en WhatsApp/Facebook/Twitter). Si más adelante quieres una imagen horizontal dedicada (1200x630px, con foto + logo + texto), se puede diseñar y volver a apuntar `og:image`/`twitter:image` en `index.html`.
 
-Las imágenes actuales son SVG genéricos creados específicamente para este sitio (no son fotografías de stock ni de terceros), pensados solo como reemplazo temporal hasta contar con el material real.
+Las ilustraciones que aún quedan (`foto-sobre-mi.svg`, `favicon.svg`) son gráficos minimalistas propios creados para este sitio (no son fotografías de stock ni de terceros), pensados solo como reemplazo temporal hasta contar con el material real.
 
 ## Datos a confirmar / actualizar
 

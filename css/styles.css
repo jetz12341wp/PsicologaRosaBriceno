@@ -182,6 +182,7 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   width: 44px;
   height: 44px;
   border-radius: 50%;
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -856,6 +857,11 @@ p { margin: 0 0 16px; color: var(--color-text-soft); }
   gap: 12px;
   align-items: center;
   margin-bottom: 14px;
+}
+
+.footer__brand img {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .footer__brand strong {
