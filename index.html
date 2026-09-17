@@ -87,7 +87,11 @@
     <div class="header__actions">
       <a href="https://wa.me/51977463071?text=Hola%2C%20Rosa.%20He%20visto%20tu%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20consultar%20sobre%20las%20sesiones%20de%20psicoterapia." target="_blank" rel="noopener" class="btn btn-primary header__whatsapp">Escríbeme por WhatsApp</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
-        <span></span><span></span><span></span>
+        <span class="menu-toggle__icon">
+          <svg class="menu-toggle__icon-open" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+          <svg class="menu-toggle__icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </span>
+        <span class="menu-toggle__label">Menú</span>
       </button>
     </div>
   </div>
@@ -141,21 +145,19 @@
   <section class="section" id="sobre-mi">
     <div class="container about">
       <div class="about__card">
-        <div class="about__image">
-          <img src="assets/img/foto-sobre-mi.jpeg" alt="Rosa Briceño, psicóloga y psicoterapeuta" loading="lazy">
+        <div class="about__image-frame">
+          <div class="about__image">
+            <img src="assets/img/foto-sobre-mi.jpeg" alt="Rosa Briceño, psicóloga y psicoterapeuta" loading="lazy">
+          </div>
         </div>
 
         <div class="about__body">
           <span class="section-tag">Sobre mí</span>
           <h2>Un espacio para sentirte escuchado y acompañado</h2>
           <p>Soy Rosa Briceño, psicóloga y psicoterapeuta.</p>
-          <p>Mi trabajo parte de una idea sencilla: pedir ayuda psicológica no significa tener todas las respuestas, sino contar con un espacio seguro para comprender lo que estamos viviendo y encontrar nuevas formas de afrontarlo.</p>
-          <p>Acompaño a adolescentes y adultos que atraviesan dificultades relacionadas con la ansiedad, el estado de ánimo, la autoestima, las relaciones interpersonales, la regulación emocional y diferentes procesos de cambio o adaptación.</p>
-          <p>Mi formación está orientada principalmente al enfoque cognitivo-conductual (TCC) y la Activación Conductual, herramientas que me permiten trabajar de manera estructurada y, al mismo tiempo, adaptarme a las necesidades y características de cada persona.</p>
-          <p>En consulta encontrarás un espacio de escucha, respeto y ausencia de juicios, donde podamos comprender juntos lo que está ocurriendo, identificar aquello que puede estar manteniendo el malestar y desarrollar estrategias que puedas llevar a tu vida cotidiana.</p>
-          <p>Me gusta explicar las cosas de manera clara, utilizar ejemplos cuando es necesario, comprobar que lo trabajado tenga sentido para ti y construir los objetivos del proceso de manera colaborativa.</p>
-
-          <div class="about__highlight">No tienes que saber exactamente qué decir ni tener claro por dónde empezar. Podemos descubrirlo juntos.</div>
+          <p>Acompaño a adolescentes y adultos que atraviesan dificultades relacionadas con la ansiedad, el estado de ánimo, la autoestima, las relaciones y la regulación emocional, así como diferentes procesos de cambio y adaptación.</p>
+          <p>Mi formación está orientada principalmente al enfoque cognitivo-conductual (TCC) y la Activación Conductual, adaptando las herramientas y objetivos a las necesidades de cada persona.</p>
+          <p>Busco ofrecer un espacio de escucha, respeto y confianza, donde puedas comprender lo que estás viviendo, encontrar nuevas formas de afrontarlo y desarrollar herramientas que puedas aplicar en tu vida cotidiana.</p>
 
           <div class="about__signature">
             <strong>Rosa Angélica Briceño Calvo</strong>
@@ -444,10 +446,10 @@
         <h2>La experiencia de quienes ya dieron el paso</h2>
       </div>
 
-      <div class="carousel" data-carousel>
+      <div class="carousel carousel--single" data-carousel>
         <div class="carousel__viewport">
           <div class="carousel__track">
-            <div class="carousel__slide carousel__slide--wide">
+            <div class="carousel__slide">
               <div class="testimonials-placeholder">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 15h2l1-3V8H6v4h2Zm8 0h2l1-3V8h-4v4h2Z"/></svg>
                 <p><strong>Muy pronto</strong> compartiré aquí testimonios de pacientes que hayan autorizado su publicación, respetando siempre la confidencialidad del proceso terapéutico.</p>
@@ -615,6 +617,19 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <div class="footer__legal-box">
+      <a href="assets/docs/terminos-y-condiciones-atenciones-virtuales.pdf" target="_blank" rel="noopener">
+        <span class="footer__legal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
+        <span class="footer__legal-text">
+          <strong>Términos y condiciones de atenciones virtuales</strong>
+          <span>Ver documento (PDF)</span>
+        </span>
+        <span class="footer__legal-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
     </div>
 
     <div class="footer__bottom">

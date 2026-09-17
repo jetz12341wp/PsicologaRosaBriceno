@@ -16,19 +16,24 @@
   // Menú móvil
   var menuToggle = document.getElementById('menuToggle');
   var mobileNav = document.getElementById('mobileNav');
+  var menuLabel = menuToggle ? menuToggle.querySelector('.menu-toggle__label') : null;
+
+  function setMenuState(isOpen) {
+    menuToggle.classList.toggle('is-active', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    if (menuLabel) menuLabel.textContent = isOpen ? 'Cerrar' : 'Menú';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
 
   function closeMenu() {
-    menuToggle.classList.remove('is-active');
     mobileNav.classList.remove('is-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    setMenuState(false);
   }
 
   function toggleMenu() {
     var isOpen = mobileNav.classList.toggle('is-open');
-    menuToggle.classList.toggle('is-active', isOpen);
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    setMenuState(isOpen);
   }
 
   if (menuToggle && mobileNav) {
@@ -77,45 +82,49 @@
     var prevBtn = root.querySelector('.carousel__arrow--prev');
     var nextBtn = root.querySelector('.carousel__arrow--next');
 
-    var dots = [];
-    var dotsContainer = null;
     var externalSelector = root.getAttribute('data-indicators');
-
-    if (externalSelector) {
-      dotsContainer = document.querySelector(externalSelector);
-    } else {
-      dotsContainer = root.querySelector('.carousel__dots');
-    }
+    var usesExternal = !!externalSelector;
+    var dotsContainer = usesExternal ? document.querySelector(externalSelector) : root.querySelector('.carousel__dots');
+    var dots = [];
 
     if (slides.length <= 1) {
       if (prevBtn) prevBtn.style.display = 'none';
       if (nextBtn) nextBtn.style.display = 'none';
-      if (dotsContainer && !externalSelector) dotsContainer.style.display = 'none';
+      if (dotsContainer && !usesExternal) dotsContainer.style.display = 'none';
       return;
     }
 
-    if (dotsContainer) {
-      if (externalSelector) {
-        dots = Array.prototype.slice.call(dotsContainer.children);
-      } else {
-        dotsContainer.innerHTML = '';
-        slides.forEach(function (_, i) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'carousel__dot';
-          b.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
-          dotsContainer.appendChild(b);
-          dots.push(b);
-        });
-      }
+    // Los indicadores externos (p. ej. los marcadores numerados de "Cómo
+    // trabajo") representan cada diapositiva 1:1. Los puntos generados
+    // automáticamente representan "páginas" completas de tarjetas, para
+    // que la navegación avance por módulos enteros.
+    function getGap() {
+      var g = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+      return isNaN(g) ? 0 : g;
     }
 
-    function goTo(i) {
+    function getVisibleCount() {
+      var slideWidth = slides[0].getBoundingClientRect().width;
+      if (!slideWidth) return 1;
+      var gap = getGap();
+      var vw = viewport.clientWidth;
+      return Math.max(1, Math.round((vw + gap) / (slideWidth + gap)));
+    }
+
+    function getPageCount() {
+      return Math.max(1, Math.ceil(slides.length / getVisibleCount()));
+    }
+
+    function goToSlide(i) {
       i = Math.max(0, Math.min(i, slides.length - 1));
       slides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     }
 
-    function currentIndex() {
+    function goToPage(p) {
+      goToSlide(Math.min(p * getVisibleCount(), slides.length - 1));
+    }
+
+    function currentSlideIndex() {
       var left = viewport.scrollLeft;
       var closest = 0;
       var min = Infinity;
@@ -126,21 +135,54 @@
       return closest;
     }
 
-    function updateActive() {
-      var idx = currentIndex();
-      dots.forEach(function (d, i) {
-        d.classList.toggle('is-active', i === idx);
-      });
-      if (prevBtn) prevBtn.disabled = idx === 0;
-      if (nextBtn) nextBtn.disabled = idx === slides.length - 1;
-      root.dispatchEvent(new CustomEvent('carousel:update', { detail: { index: idx } }));
+    function currentPage() {
+      return Math.floor(currentSlideIndex() / getVisibleCount());
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); });
-    dots.forEach(function (dot, i) {
-      dot.addEventListener('click', function () { goTo(i); });
-    });
+    function buildDots() {
+      if (usesExternal) {
+        dots = Array.prototype.slice.call(dotsContainer.children);
+        return;
+      }
+      if (!dotsContainer) { dots = []; return; }
+      var pages = getPageCount();
+      dotsContainer.innerHTML = '';
+      dots = [];
+      for (var i = 0; i < pages; i++) {
+        (function (pageIndex) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'carousel__dot';
+          b.setAttribute('aria-label', 'Ir al grupo ' + (pageIndex + 1));
+          b.addEventListener('click', function () { goToPage(pageIndex); });
+          dotsContainer.appendChild(b);
+          dots.push(b);
+        })(i);
+      }
+    }
+
+    if (usesExternal) {
+      dots = Array.prototype.slice.call(dotsContainer.children);
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { goToSlide(i); });
+      });
+    } else {
+      buildDots();
+    }
+
+    function updateActive() {
+      var slideIdx = currentSlideIndex();
+      var activeIdx = usesExternal ? slideIdx : currentPage();
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === activeIdx);
+      });
+      if (prevBtn) prevBtn.disabled = slideIdx === 0;
+      if (nextBtn) nextBtn.disabled = slideIdx >= slides.length - 1;
+      root.dispatchEvent(new CustomEvent('carousel:update', { detail: { index: slideIdx } }));
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { goToSlide(currentSlideIndex() - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToSlide(currentSlideIndex() + 1); });
 
     var ticking = false;
     viewport.addEventListener('scroll', function () {
@@ -152,6 +194,15 @@
         ticking = true;
       }
     }, { passive: true });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (!usesExternal) buildDots();
+        updateActive();
+      }, 200);
+    });
 
     updateActive();
   }
