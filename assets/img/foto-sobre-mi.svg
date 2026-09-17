@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Ilustración: Rosa Briceño acompañando un proceso terapéutico">
+  <title>Sobre mí — Rosa Briceño</title>
+  <rect width="400" height="500" fill="#FBD2BB"/>
+
+  <circle cx="60" cy="80" r="110" fill="#EADFD5" opacity="0.7"/>
+  <circle cx="360" cy="460" r="130" fill="#6F8FA3" opacity="0.25"/>
+
+  <!-- escritorio -->
+  <rect x="60" y="330" width="280" height="14" rx="7" fill="#6B5B53"/>
+  <rect x="80" y="344" width="14" height="90" fill="#6B5B53"/>
+  <rect x="306" y="344" width="14" height="90" fill="#6B5B53"/>
+
+  <!-- cuaderno y taza -->
+  <rect x="110" y="300" width="90" height="30" rx="4" fill="#FFF8F3"/>
+  <line x1="120" y1="310" x2="190" y2="310" stroke="#EADFD5" stroke-width="3"/>
+  <line x1="120" y1="320" x2="170" y2="320" stroke="#EADFD5" stroke-width="3"/>
+  <rect x="230" y="292" width="30" height="38" rx="6" fill="#F4A582"/>
+
+  <!-- figura, retrato simplificado sentada -->
+  <ellipse cx="230" cy="150" rx="50" ry="55" fill="#6B5B53"/>
+  <path d="M170 220c0-48 30-75 60-75s60 27 60 75v70c0 15-11 26-26 26H196c-15 0-26-11-26-26v-70Z" fill="#6B5B53"/>
+  <path d="M170 220c0-48 30-75 60-75s60 27 60 75v20H170v-20Z" fill="#F4A582"/>
+</svg>
